@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as MemoryRouteImport } from './routes/memory'
+import { Route as EventsRouteImport } from './routes/events'
 import { Route as ConnectRouteImport } from './routes/connect'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AgentsNewRouteImport } from './routes/agents.new'
@@ -18,6 +19,11 @@ import { Route as AgentsIdRouteImport } from './routes/agents.$id'
 const MemoryRoute = MemoryRouteImport.update({
   id: '/memory',
   path: '/memory',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ConnectRoute = ConnectRouteImport.update({
@@ -44,6 +50,7 @@ const AgentsIdRoute = AgentsIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/connect': typeof ConnectRoute
+  '/events': typeof EventsRoute
   '/memory': typeof MemoryRoute
   '/agents/$id': typeof AgentsIdRoute
   '/agents/new': typeof AgentsNewRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/connect': typeof ConnectRoute
+  '/events': typeof EventsRoute
   '/memory': typeof MemoryRoute
   '/agents/$id': typeof AgentsIdRoute
   '/agents/new': typeof AgentsNewRoute
@@ -59,21 +67,36 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/connect': typeof ConnectRoute
+  '/events': typeof EventsRoute
   '/memory': typeof MemoryRoute
   '/agents/$id': typeof AgentsIdRoute
   '/agents/new': typeof AgentsNewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/connect' | '/memory' | '/agents/$id' | '/agents/new'
+  fullPaths:
+    | '/'
+    | '/connect'
+    | '/events'
+    | '/memory'
+    | '/agents/$id'
+    | '/agents/new'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/connect' | '/memory' | '/agents/$id' | '/agents/new'
-  id: '__root__' | '/' | '/connect' | '/memory' | '/agents/$id' | '/agents/new'
+  to: '/' | '/connect' | '/events' | '/memory' | '/agents/$id' | '/agents/new'
+  id:
+    | '__root__'
+    | '/'
+    | '/connect'
+    | '/events'
+    | '/memory'
+    | '/agents/$id'
+    | '/agents/new'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ConnectRoute: typeof ConnectRoute
+  EventsRoute: typeof EventsRoute
   MemoryRoute: typeof MemoryRoute
   AgentsIdRoute: typeof AgentsIdRoute
   AgentsNewRoute: typeof AgentsNewRoute
@@ -86,6 +109,13 @@ declare module '@tanstack/react-router' {
       path: '/memory'
       fullPath: '/memory'
       preLoaderRoute: typeof MemoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/connect': {
@@ -122,6 +152,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ConnectRoute: ConnectRoute,
+  EventsRoute: EventsRoute,
   MemoryRoute: MemoryRoute,
   AgentsIdRoute: AgentsIdRoute,
   AgentsNewRoute: AgentsNewRoute,
