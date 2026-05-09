@@ -113,7 +113,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <NetworkLayout />
     </QueryClientProvider>
   );
 }
