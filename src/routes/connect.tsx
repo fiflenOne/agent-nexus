@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
+import { toast } from "sonner";
 import { useNetwork } from "@/lib/network-store";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -18,8 +19,17 @@ function ConnectAgents() {
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!src || !tgt || src === tgt) return;
+    if (!src || !tgt || src === tgt) {
+      toast.error("Pick two different agents");
+      return;
+    }
+    const dup = connections.some((c) => c.sourceAgent === src && c.targetAgent === tgt);
+    if (dup) {
+      toast.error(`${nameOf(src)} → ${nameOf(tgt)} already exists`);
+      return;
+    }
     createConnection({ sourceAgent: src, targetAgent: tgt, type, strength, animated: true });
+    toast.success(`Linked ${nameOf(src)} → ${nameOf(tgt)}`);
     setSrc(""); setTgt("");
   };
 

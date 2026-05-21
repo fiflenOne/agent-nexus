@@ -1,5 +1,6 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useState } from "react";
+import { toast } from "sonner";
 import { useNetwork } from "@/lib/network-store";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -26,13 +27,18 @@ function CreateAgent() {
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name.trim()) return;
+    if (!form.name.trim()) {
+      toast.error("Agent needs a name");
+      return;
+    }
     const id = createAgent({
       ...form,
       xPosition: 200 + Math.random() * 300,
       yPosition: 150 + Math.random() * 250,
     });
-    navigate({ to: "/agents/$id", params: { id } });
+    toast.success(`Agent ${form.name} spawned into the network`);
+    navigate({ to: "/" });
+    void id;
   };
 
   return (
