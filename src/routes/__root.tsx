@@ -115,7 +115,8 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <MONAD />
+      <NetworkLayout />
+      <Toaster richColors position="top-right" />
     </QueryClientProvider>
   );
 }
