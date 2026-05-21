@@ -114,7 +114,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <MONAD />
+      <NetworkLayout />
     </QueryClientProvider>
   );
 }
