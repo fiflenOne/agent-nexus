@@ -10,7 +10,7 @@ import {
 
 import appCss from "../styles.css?url";
 import { NetworkLayout } from "@/components/NetworkLayout";
-import { Toaster } from "@/components/ui/sonner";
+import MONAD from "@/monad_v3_fixed";
 
 function NotFoundComponent() {
   return (
@@ -115,8 +115,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <NetworkLayout />
-      <Toaster richColors position="top-right" />
+      <MONAD />
     </QueryClientProvider>
   );
 }
