@@ -90,7 +90,7 @@ export default function MonadBrain_AudioBars_Gradient() {
     composer.addPass(new RenderPass(scene, camera));
     const bloom = new UnrealBloomPass(new THREE.Vector2(W, H), 2.45, 0.8, 0.08);
     composer.addPass(bloom);
-    composer.addPass(new SMAAPass(W, H));
+    composer.addPass(new SMAAPass());
 
     const dataArray = new Uint8Array(128);
     let t = 0;
