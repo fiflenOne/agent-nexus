@@ -9,8 +9,9 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
-import { NetworkLayout } from "@/components/NetworkLayout";
 import MONAD from "@/monad_v3_fixed";
+import { MonadProvider } from "@/context/MonadContext";
+import MonadBrain_AudioBars_Gradient from "@/components/monad/MonadBrain_AudioBars_Gradient";
 
 function NotFoundComponent() {
   return (
@@ -119,7 +120,16 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <MONAD />
+      <MonadProvider>
+        <div className="relative w-screen h-screen overflow-hidden bg-[#010c0d]">
+          <div className="absolute inset-0">
+            <MONAD />
+          </div>
+          <div className="absolute bottom-0 left-0 right-0 h-[36vh] border-t border-white/5 bg-black/40 backdrop-blur-sm">
+            <MonadBrain_AudioBars_Gradient />
+          </div>
+        </div>
+      </MonadProvider>
     </QueryClientProvider>
   );
 }
