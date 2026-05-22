@@ -125,7 +125,7 @@ function RootComponent() {
           <div className="absolute inset-0">
             <MONAD />
           </div>
-          <div className="absolute bottom-0 left-0 right-0 h-[36vh] border-t border-white/5 bg-black/40 backdrop-blur-sm">
+          <div className="absolute bottom-4 right-4 w-[340px] h-[240px] rounded-xl border border-white/10 bg-black/50 backdrop-blur-md shadow-2xl shadow-cyan-500/10 overflow-hidden">
             <MonadBrain_AudioBars_Gradient />
           </div>
         </div>
