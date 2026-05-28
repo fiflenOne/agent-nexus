@@ -12,6 +12,7 @@ import appCss from "../styles.css?url";
 import MONAD from "@/monad_v3_fixed";
 import { MonadProvider } from "@/context/MonadContext";
 import MonadBrain_AudioBars_Gradient from "@/components/monad/MonadBrain_AudioBars_Gradient";
+import FloatingResizableWindow from "@/components/monad/FloatingResizableWindow";
 
 function NotFoundComponent() {
   return (
@@ -125,9 +126,9 @@ function RootComponent() {
           <div className="absolute inset-0">
             <MONAD />
           </div>
-          <div className="absolute bottom-4 right-4 w-[340px] h-[240px] rounded-xl border border-white/10 bg-black/50 backdrop-blur-md shadow-2xl shadow-cyan-500/10 overflow-hidden">
+          <FloatingResizableWindow>
             <MonadBrain_AudioBars_Gradient />
-          </div>
+          </FloatingResizableWindow>
         </div>
       </MonadProvider>
     </QueryClientProvider>
