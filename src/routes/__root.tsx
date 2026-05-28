@@ -12,6 +12,7 @@ import appCss from "../styles.css?url";
 import MONAD from "@/monad_v3_fixed";
 import { MonadProvider } from "@/context/MonadContext";
 import MonadBrain_AudioBars_Gradient from "@/components/monad/MonadBrain_AudioBars_Gradient";
+import FloatingResizableWindow from "@/components/monad/FloatingResizableWindow";
 
 function NotFoundComponent() {
   return (
